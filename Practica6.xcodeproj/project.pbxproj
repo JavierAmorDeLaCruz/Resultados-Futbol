@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		778AA3181E06F36F00BD84E3 /* FourthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778AA3171E06F36F00BD84E3 /* FourthTableViewController.swift */; };
+		778AA31A1E0713D900BD84E3 /* JugadoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778AA3191E0713D900BD84E3 /* JugadoresTableViewController.swift */; };
 		77E138481E055B75006A5664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E138471E055B75006A5664 /* AppDelegate.swift */; };
 		77E1384A1E055B75006A5664 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E138491E055B75006A5664 /* FirstViewController.swift */; };
 		77E1384C1E055B75006A5664 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1384B1E055B75006A5664 /* SecondViewController.swift */; };
@@ -14,10 +16,11 @@
 		77E138511E055B75006A5664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77E138501E055B75006A5664 /* Assets.xcassets */; };
 		77E138541E055B75006A5664 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77E138521E055B75006A5664 /* LaunchScreen.storyboard */; };
 		77E1385C1E055D5C006A5664 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1385B1E055D5C006A5664 /* ThirdViewController.swift */; };
-		77E1385E1E055ECC006A5664 /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1385D1E055ECC006A5664 /* FourthViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		778AA3171E06F36F00BD84E3 /* FourthTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthTableViewController.swift; sourceTree = "<group>"; };
+		778AA3191E0713D900BD84E3 /* JugadoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JugadoresTableViewController.swift; sourceTree = "<group>"; };
 		77E138441E055B75006A5664 /* Practica6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Practica6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E138471E055B75006A5664 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77E138491E055B75006A5664 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -27,7 +30,6 @@
 		77E138531E055B75006A5664 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77E138551E055B75006A5664 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77E1385B1E055D5C006A5664 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
-		77E1385D1E055ECC006A5664 /* FourthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +65,10 @@
 				77E138471E055B75006A5664 /* AppDelegate.swift */,
 				77E138491E055B75006A5664 /* FirstViewController.swift */,
 				77E1384B1E055B75006A5664 /* SecondViewController.swift */,
-				77E1384D1E055B75006A5664 /* Main.storyboard */,
-				77E1385D1E055ECC006A5664 /* FourthViewController.swift */,
 				77E1385B1E055D5C006A5664 /* ThirdViewController.swift */,
+				778AA3171E06F36F00BD84E3 /* FourthTableViewController.swift */,
+				778AA3191E0713D900BD84E3 /* JugadoresTableViewController.swift */,
+				77E1384D1E055B75006A5664 /* Main.storyboard */,
 				77E138501E055B75006A5664 /* Assets.xcassets */,
 				77E138521E055B75006A5664 /* LaunchScreen.storyboard */,
 				77E138551E055B75006A5664 /* Info.plist */,
@@ -148,9 +151,10 @@
 			files = (
 				77E1384C1E055B75006A5664 /* SecondViewController.swift in Sources */,
 				77E138481E055B75006A5664 /* AppDelegate.swift in Sources */,
+				778AA31A1E0713D900BD84E3 /* JugadoresTableViewController.swift in Sources */,
 				77E1385C1E055D5C006A5664 /* ThirdViewController.swift in Sources */,
+				778AA3181E06F36F00BD84E3 /* FourthTableViewController.swift in Sources */,
 				77E1384A1E055B75006A5664 /* FirstViewController.swift in Sources */,
-				77E1385E1E055ECC006A5664 /* FourthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +318,7 @@
 				77E1385A1E055B75006A5664 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

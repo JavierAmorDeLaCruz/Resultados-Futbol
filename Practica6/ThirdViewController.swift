@@ -51,7 +51,7 @@ class ThirdViewController: UITableViewController {
         return numeroEquiposLiga
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Plantilla" {
             if let pvc = segue.destination as? FourthViewController {
                 // IndexPath de la celda seleccionada
@@ -60,7 +60,7 @@ class ThirdViewController: UITableViewController {
                 }
             }
         }
-    }
+    } */
     
 
 }
