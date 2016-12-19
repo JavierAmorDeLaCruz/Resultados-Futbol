@@ -1,15 +1,15 @@
 //
-//  ThirdViewController.swift
+//  PruebaTableViewController.swift
 //  Practica6
 //
-//  Created by Javier  Amor De La Cruz on 17/12/16.
+//  Created by Carlos  on 19/12/16.
 //  Copyright © 2016 Javier  Amor De La Cruz. All rights reserved.
 //
 
 import UIKit
 
-class ThirdViewController: UITableViewController {
-    
+class PruebaTableViewController: UITableViewController {
+
     var ligas: [[String:AnyObject]] = []
     
     override func viewDidLoad() {
@@ -82,14 +82,6 @@ class ThirdViewController: UITableViewController {
                 }
             }
         }
-        if segue.identifier == "partidos" {
-            if let pvc = segue.destination as? PartidosTableViewController {
-                // IndexPath de la celda seleccionada
-                if let lt = tableView.indexPathForSelectedRow {
-                    pvc.liga = ligas[lt.row]["name"] as! String
-                    pvc.nLiga = ligas[lt.row]["id"] as! String
-                }
-            }
-        }
     }
+
 }
