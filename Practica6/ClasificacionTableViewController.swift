@@ -1,23 +1,25 @@
 //
-//  ThirdViewController.swift
+//  ClasificacionTableViewController.swift
 //  Practica6
 //
-//  Created by Javier  Amor De La Cruz on 17/12/16.
+//  Created by Carlos  on 19/12/16.
 //  Copyright © 2016 Javier  Amor De La Cruz. All rights reserved.
 //
 
 import UIKit
 
-class ThirdViewController: UITableViewController {
+class ClasificacionTableViewController: UITableViewController {
     
-    var ligas: [[String:AnyObject]] = []
+    var equipos: [[String:AnyObject]] = []
+    var liga: String!
+    var nLiga: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Ligas"
+        self.navigationItem.title = liga!
         
-        getLigas()
+        getClasificacion()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,56 +33,54 @@ class ThirdViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getLigas() {
-        let ligasURL = "http://apiclient.resultados-futbol.com/scripts/api/api.php?key=8f696b3cbaf3af38cd3ab6fa2bc7f3a1&tz=Europe/Madrid&format=json&req=leagues&top=1&competitions=1,2,7,8,9,10,16,19"
+    func getClasificacion() {
+        let ligaURL = "http://apiclient.resultados-futbol.com/scripts/api/api.php?key=8f696b3cbaf3af38cd3ab6fa2bc7f3a1&tz=Europe/Madrid&format=json&req=tables&league=\(nLiga!)&group=all"
         
-        if let url = URL(string: ligasURL) {
+        if let url = URL(string: ligaURL) {
             // let queue = DispatchQueue(label: "Download Queu")
             //queue.async {
-            var ligas: [[String: AnyObject]] = self.ligas
+            var equipos: [[String: AnyObject]] = self.equipos
             /*DispatchQueue.main.async {
              UIApplication.shared.isNetworkActivityIndicatorVisible = true
              }*/
             if let data = try? Data(contentsOf: url) {
                 let dataJson = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
-                ligas = dataJson!!["league"]! as! [[String: AnyObject]]
+                equipos = dataJson!!["table"]! as! [[String: AnyObject]]
             }
             //DispatchQueue.main.async {
             //  UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            self.ligas = ligas
+            self.equipos = equipos
             self.tableView.reloadData()
             //  }
             //}
         }
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Clasificación"
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Liga", for: indexPath)
-        let equipo = ligas[indexPath.row]
-        let nombre = equipo["name"] as? String
-        let imagenStr = equipo["logo"] as! String
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Equipo", for: indexPath)
+        let equipo = equipos[indexPath.row]
+        let nombre = equipo["team"] as? String
+        let puntos = equipo["points"]
+        let partidosGanados = equipo["wins"]
+        let partidosEmpatados = equipo["draws"]
+        let partidosPerdidos = equipo["losses"]
+        let imagenStr = equipo["shield"] as! String
         let imagenURL = URL(string: imagenStr)
         let dataImg = try? Data(contentsOf: imagenURL!)
         
         cell.textLabel?.text = nombre
+        cell.detailTextLabel?.text = "Posición: \(indexPath.row + 1) (\(puntos!) puntos) - V: \(partidosGanados!);E: \(partidosEmpatados!);D: \(partidosPerdidos!)"
         cell.imageView?.image = UIImage(data: dataImg!)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ligas.count
+        return equipos.count
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "clasificacion" {
-            if let cvc = segue.destination as? ClasificacionTableViewController {
-                // IndexPath de la celda seleccionada
-                if let lt = tableView.indexPathForSelectedRow {
-                    cvc.liga = ligas[lt.row]["name"] as! String
-                    cvc.nLiga = ligas[lt.row]["id"] as! String
-                }
-            }
-        }
-    }
 }
