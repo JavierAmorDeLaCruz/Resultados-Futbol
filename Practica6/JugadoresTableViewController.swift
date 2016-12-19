@@ -95,14 +95,17 @@ class JugadoresTableViewController: UITableViewController {
         
         
         
-        let session = URLSession.shared
+        //let session = URLSession.shared
         // Crear una sesión
         // Mostrar indicador de actividad de red
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         // URL de la imagen
         let imgUrl = dic["image"] as! String
         let url = URL(string: imgUrl)!
-        let task = session.dataTask(with: url) { (data: Data?,
+        let dataImg = try? Data(contentsOf: url)
+        cell.imageView?.image = UIImage(data: dataImg!)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        /*let task = session.dataTask(with: url) { (data: Data?,
             response: URLResponse?,
             error: Error? ) in
             if error == nil && (response as! HTTPURLResponse).statusCode == 200 {
@@ -121,7 +124,7 @@ class JugadoresTableViewController: UITableViewController {
         }
         // Arrancar la tarea
         task.resume()
-        
+        */
         return cell
     }
     

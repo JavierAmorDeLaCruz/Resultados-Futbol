@@ -26,7 +26,7 @@ class FourthTableViewController: UITableViewController {
     func get_equipos(){
         let Equipos_URL = "http://apiclient.resultados-futbol.com/scripts/api/api.php?key=8f696b3cbaf3af38cd3ab6fa2bc7f3a1&tz=Europe/Madrid&format=json&req=get_teams&filter=espana"
         
-        title = "Descargando..."
+        self.navigationItem.title = "Descargando..."
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         let queue = DispatchQueue(label: "download queue")
@@ -48,7 +48,7 @@ class FourthTableViewController: UITableViewController {
                     DispatchQueue.main.async {
                             self.equipos = newEquipos
                             self.tableView.reloadData()
-                            self.title = "Seleccione Equipo"
+                            self.navigationItem.title = "Seleccione Equipo"
                     }
                 } catch let err {
                     DispatchQueue.main.async {
@@ -83,14 +83,18 @@ class FourthTableViewController: UITableViewController {
         
         
         
-        let session = URLSession.shared
+        //let session = URLSession.shared
         // Crear una sesión
         // Mostrar indicador de actividad de red
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         // URL de la imagen
         let imgUrl = dic["team_shield"] as! String
         let url = URL(string: imgUrl)!
-        let task = session.dataTask(with: url) { (data: Data?,
+        let dataImg = try? Data(contentsOf: url)
+        cell.imageView?.image = UIImage(data: dataImg!)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
+        /*let task = session.dataTask(with: url) { (data: Data?,
                                                   response: URLResponse?,
                                                   error: Error? ) in
             if error == nil && (response as! HTTPURLResponse).statusCode == 200 {
@@ -109,7 +113,7 @@ class FourthTableViewController: UITableViewController {
             }
             // Arrancar la tarea
         task.resume()
-        
+        */
         return cell
     }
     
