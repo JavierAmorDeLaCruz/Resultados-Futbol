@@ -13,6 +13,9 @@ class FirstCustomTableViewCell: UITableViewCell {
     @IBOutlet weak var result_label: UILabel!
     @IBOutlet weak var home_shield: UIImageView!
     @IBOutlet weak var visitor_shield: UIImageView!
+    @IBOutlet weak var local_label: UILabel!
+    @IBOutlet weak var visitor_label: UILabel!
+    @IBOutlet weak var min_label: UILabel!
     
     override func awakeFromNib() {
         

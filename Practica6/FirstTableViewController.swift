@@ -85,6 +85,13 @@ class FirstTableViewController: UITableViewController {
         let dic = live_matches[indexPath.row]
         
         cell.result_label.text = dic["result"] as? String
+        cell.local_label.text = dic["local"] as? String
+        cell.visitor_label.text = dic["visitor"] as? String
+        if let min = dic["live_minute"] as? String {
+            if min == "Des" {cell.min_label.text  = "Tiempo de descuento"}
+            else if min == "" {cell.min_label.text  = "Minuto desconocido"}
+            else {cell.min_label.text = "Minuto \(dic["live_minute"] as! String)" }
+        }
         
         
         
