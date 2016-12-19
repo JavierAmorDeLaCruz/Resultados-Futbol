@@ -15,17 +15,19 @@ class FirstTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         get_liveMatches()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
-
+    
+    func refresh(){
+    get_liveMatches()
+    refreshControl?.endRefreshing()
+    }
+    
     func get_liveMatches(){
         let Equipos_URL = "http://apiclient.resultados-futbol.com/scripts/api/api.php?key=8f696b3cbaf3af38cd3ab6fa2bc7f3a1&tz=Europe/Madrid&format=json&req=livescore"
         
-        title = "Descargando..."
+        self.navigationItem.title = "Descargando..."
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         let queue = DispatchQueue(label: "download queue")
@@ -36,7 +38,7 @@ class FirstTableViewController: UITableViewController {
                 print(jsonData)
                 let json = try JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as? NSDictionary
                 //print(json)
-                let liveMatches: [[String: AnyObject]] = json!["matches"]! as! [[String: AnyObject]]
+                if let liveMatches: [[String : AnyObject]] = json!["matches"]! as? [[String: AnyObject]] {
                 print(liveMatches)
                 //print(json!["teams"])
                 //let newEquipos:[[String:AnyObject]]=json!["teams"] as [[String:AnyObject]]
@@ -47,7 +49,16 @@ class FirstTableViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.live_matches = liveMatches
                     self.tableView.reloadData()
-                    self.title = "Partidos en Directo"
+                    self.navigationItem.title = "Partidos en Directo"
+                }
+                }else {
+                    let alert = UIAlertController(title: "Ups...", message: "En este momento no hay partidos en juego", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title:"OK",
+                                                  style: .default){
+                                                    aa in self.get_liveMatches()
+                    })
+                    self.present(alert, animated: true, completion: nil)
+
                 }
             } catch let err {
                 DispatchQueue.main.async {
@@ -85,6 +96,13 @@ class FirstTableViewController: UITableViewController {
         let dic = live_matches[indexPath.row]
         
         cell.result_label.text = dic["result"] as? String
+        cell.local_label.text = dic["local"] as? String
+        cell.visitor_label.text = dic["visitor"] as? String
+        if let min = dic["live_minute"] as? String {
+            if min == "Des" {cell.min_label.text  = "Tiempo de descuento"}
+            else if min == "" {cell.min_label.text  = "Minuto desconocido"}
+            else {cell.min_label.text = "Minuto \(dic["live_minute"] as! String)" }
+        }
         
         
         
