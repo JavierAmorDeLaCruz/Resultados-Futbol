@@ -10,7 +10,7 @@ import UIKit
 
 class ClasificacionTableViewController: UITableViewController {
     
-    var equipos: [[String:AnyObject]] = []
+    var equipos: [[String:Any]] = []
     var liga: String!
     var nLiga: String!
     
@@ -36,23 +36,31 @@ class ClasificacionTableViewController: UITableViewController {
     func getClasificacion() {
         let ligaURL = "http://apiclient.resultados-futbol.com/scripts/api/api.php?key=8f696b3cbaf3af38cd3ab6fa2bc7f3a1&tz=Europe/Madrid&format=json&req=tables&league=\(nLiga!)&group=all"
         
-        if let url = URL(string: ligaURL) {
-            // let queue = DispatchQueue(label: "Download Queu")
-            //queue.async {
-            var equipos: [[String: AnyObject]] = self.equipos
-            /*DispatchQueue.main.async {
-             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-             }*/
-            if let data = try? Data(contentsOf: url) {
-                let dataJson = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
-                equipos = dataJson!!["table"]! as! [[String: AnyObject]]
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        let queue = DispatchQueue(label: "Download Queue")
+        queue.async {
+            let url = URL(string: ligaURL)!
+            do {
+                var equipos: [[String: AnyObject]]!
+                defer {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+                let data = try Data(contentsOf: url)
+                let dataJson = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
+                equipos = dataJson!["table"]! as! [[String: AnyObject]]
+                
+                DispatchQueue.main.async {
+                    self.equipos = equipos
+                    self.tableView.reloadData()
+                }
+
+            } catch let err {
+                DispatchQueue.main.async {
+                    self.title = "Desactualizado"
+                    print("Error descargando = \(err.localizedDescription)")
+                }
             }
-            //DispatchQueue.main.async {
-            //  UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            self.equipos = equipos
-            self.tableView.reloadData()
-            //  }
-            //}
         }
     }
     
