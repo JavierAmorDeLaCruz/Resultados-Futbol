@@ -10,7 +10,7 @@ import UIKit
 
 class ThirdViewController: UITableViewController {
     
-    var ligas: [[String:AnyObject]] = []
+    var ligas: [[String:Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,23 +34,29 @@ class ThirdViewController: UITableViewController {
     func getLigas() {
         let ligasURL = "http://apiclient.resultados-futbol.com/scripts/api/api.php?key=8f696b3cbaf3af38cd3ab6fa2bc7f3a1&tz=Europe/Madrid&format=json&req=leagues&top=1&competitions=1,2,7,8,9,10,16,19"
         
-        if let url = URL(string: ligasURL) {
-            // let queue = DispatchQueue(label: "Download Queu")
-            //queue.async {
-            var ligas: [[String: AnyObject]] = self.ligas
-            /*DispatchQueue.main.async {
-             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-             }*/
-            if let data = try? Data(contentsOf: url) {
-                let dataJson = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
-                ligas = dataJson!!["league"]! as! [[String: AnyObject]]
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        let queue = DispatchQueue(label: "Download Queu")
+        queue.async {
+            let url = URL(string: ligasURL)!
+            do {
+                var ligas: [[String: AnyObject]]!
+                defer {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+                let data = try Data(contentsOf: url)
+                let dataJson = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary
+                ligas = dataJson!["league"]! as! [[String: AnyObject]]
+                DispatchQueue.main.async {
+                    self.ligas = ligas
+                    self.tableView.reloadData()
+                }
+            } catch let err {
+                DispatchQueue.main.async {
+                    self.title = "Desactualizado"
+                    print("Error descargando = \(err.localizedDescription)")
+                }
             }
-            //DispatchQueue.main.async {
-            //  UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            self.ligas = ligas
-            self.tableView.reloadData()
-            //  }
-            //}
         }
     }
     
