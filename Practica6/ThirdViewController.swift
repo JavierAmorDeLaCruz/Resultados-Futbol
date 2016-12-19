@@ -64,12 +64,18 @@ class ThirdViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Liga", for: indexPath)
         let equipo = ligas[indexPath.row]
         let nombre = equipo["name"] as? String
-        let imagenStr = equipo["logo"] as! String
-        let imagenURL = URL(string: imagenStr)
-        let dataImg = try? Data(contentsOf: imagenURL!)
+        cell.imageView?.image = #imageLiteral(resourceName: "liga")
+        
+        let queue = DispatchQueue(label: "img")
+        queue.async {
+            let imagenStr = equipo["logo"] as! String
+            let imagenURL = URL(string: imagenStr)
+            let dataImg = try? Data(contentsOf: imagenURL!)
+            
+            cell.imageView?.image = UIImage(data: dataImg!)
+        }
         
         cell.textLabel?.text = nombre
-        cell.imageView?.image = UIImage(data: dataImg!)
         
         return cell
     }

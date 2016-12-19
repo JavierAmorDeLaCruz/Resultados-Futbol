@@ -76,13 +76,20 @@ class ClasificacionTableViewController: UITableViewController {
         let partidosGanados = equipo["wins"]
         let partidosEmpatados = equipo["draws"]
         let partidosPerdidos = equipo["losses"]
-        let imagenStr = equipo["shield"] as! String
-        let imagenURL = URL(string: imagenStr)
-        let dataImg = try? Data(contentsOf: imagenURL!)
+        cell.imageView?.image = #imageLiteral(resourceName: "escudo")
+        
+        let queue = DispatchQueue(label: "img")
+        queue.async {
+            let imagenStr = equipo["shield"] as! String
+            let imagenURL = URL(string: imagenStr)
+            let dataImg = try? Data(contentsOf: imagenURL!)
+            DispatchQueue.main.async {
+                cell.imageView?.image = UIImage(data: dataImg!)
+            }
+        }
         
         cell.textLabel?.text = nombre
         cell.detailTextLabel?.text = "Posición: \(indexPath.row + 1) (\(puntos!) puntos) - V: \(partidosGanados!);E: \(partidosEmpatados!);D: \(partidosPerdidos!)"
-        cell.imageView?.image = UIImage(data: dataImg!)
         
         return cell
     }

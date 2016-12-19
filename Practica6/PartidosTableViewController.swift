@@ -76,17 +76,27 @@ class PartidosTableViewController: UITableViewController {
         let hora = partido["hour"] as? String
         let min = partido["minute"] as? String
         let fecha = "\(dia!) - \(hora!):\(min!)"
-        var imagenStr = partido["local_shield"] as! String
-        var imagenURL = URL(string: imagenStr)
-        var dataImg = try? Data(contentsOf: imagenURL!)
+        cell.localImg?.image = #imageLiteral(resourceName: "escudo")
+        cell.visitorImg?.image = #imageLiteral(resourceName: "escudo")
         
-        cell.localImg?.image = UIImage(data: dataImg!)
-        
-        imagenStr = partido["visitor_shield"] as! String
-        imagenURL = URL(string: imagenStr)
-        dataImg = try? Data(contentsOf: imagenURL!)
-        
-        cell.visitorImg?.image = UIImage(data: dataImg!)
+        let queue = DispatchQueue(label: "img")
+        queue.async {
+            var imagenStr = partido["local_shield"] as! String
+            var imagenURL = URL(string: imagenStr)
+            var dataImg = try? Data(contentsOf: imagenURL!)
+            
+            DispatchQueue.main.async {
+                cell.localImg?.image = UIImage(data: dataImg!)
+            }
+            
+            imagenStr = partido["visitor_shield"] as! String
+            imagenURL = URL(string: imagenStr)
+            dataImg = try? Data(contentsOf: imagenURL!)
+            
+            DispatchQueue.main.async {
+                cell.visitorImg?.image = UIImage(data: dataImg!)
+            }
+        }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
