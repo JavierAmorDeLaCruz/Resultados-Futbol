@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		07C4E6731E07F67000604427 /* ClasificacionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4E6721E07F67000604427 /* ClasificacionTableViewController.swift */; };
+		07C4E6751E07FB7D00604427 /* PartidosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4E6741E07FB7D00604427 /* PartidosTableViewController.swift */; };
+		07C4E6771E08017F00604427 /* PruebaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4E6761E08017F00604427 /* PruebaTableViewController.swift */; };
+		07C4E6791E080CB600604427 /* PartidosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C4E6781E080CB600604427 /* PartidosTableViewCell.swift */; };
 		778AA3181E06F36F00BD84E3 /* FourthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778AA3171E06F36F00BD84E3 /* FourthTableViewController.swift */; };
 		778AA31A1E0713D900BD84E3 /* JugadoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778AA3191E0713D900BD84E3 /* JugadoresTableViewController.swift */; };
 		779C34691E074B9700B17118 /* FirstTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779C34681E074B9700B17118 /* FirstTableViewController.swift */; };
 		779C346B1E07538600B17118 /* FirstCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779C346A1E07538600B17118 /* FirstCustomTableViewCell.swift */; };
 		77E138481E055B75006A5664 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E138471E055B75006A5664 /* AppDelegate.swift */; };
-		77E1384C1E055B75006A5664 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1384B1E055B75006A5664 /* SecondViewController.swift */; };
 		77E1384F1E055B75006A5664 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77E1384D1E055B75006A5664 /* Main.storyboard */; };
 		77E138511E055B75006A5664 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77E138501E055B75006A5664 /* Assets.xcassets */; };
 		77E138541E055B75006A5664 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77E138521E055B75006A5664 /* LaunchScreen.storyboard */; };
@@ -22,13 +24,15 @@
 
 /* Begin PBXFileReference section */
 		07C4E6721E07F67000604427 /* ClasificacionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClasificacionTableViewController.swift; sourceTree = "<group>"; };
+		07C4E6741E07FB7D00604427 /* PartidosTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartidosTableViewController.swift; sourceTree = "<group>"; };
+		07C4E6761E08017F00604427 /* PruebaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PruebaTableViewController.swift; sourceTree = "<group>"; };
+		07C4E6781E080CB600604427 /* PartidosTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartidosTableViewCell.swift; sourceTree = "<group>"; };
 		778AA3171E06F36F00BD84E3 /* FourthTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourthTableViewController.swift; sourceTree = "<group>"; };
 		778AA3191E0713D900BD84E3 /* JugadoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JugadoresTableViewController.swift; sourceTree = "<group>"; };
 		779C34681E074B9700B17118 /* FirstTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstTableViewController.swift; sourceTree = "<group>"; };
 		779C346A1E07538600B17118 /* FirstCustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstCustomTableViewCell.swift; sourceTree = "<group>"; };
 		77E138441E055B75006A5664 /* Practica6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Practica6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E138471E055B75006A5664 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77E1384B1E055B75006A5664 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		77E1384E1E055B75006A5664 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77E138501E055B75006A5664 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77E138531E055B75006A5664 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,15 +73,17 @@
 				77E138471E055B75006A5664 /* AppDelegate.swift */,
 				779C34681E074B9700B17118 /* FirstTableViewController.swift */,
 				779C346A1E07538600B17118 /* FirstCustomTableViewCell.swift */,
-				77E1384B1E055B75006A5664 /* SecondViewController.swift */,
 				77E1385B1E055D5C006A5664 /* ThirdViewController.swift */,
 				778AA3171E06F36F00BD84E3 /* FourthTableViewController.swift */,
 				07C4E6721E07F67000604427 /* ClasificacionTableViewController.swift */,
+				07C4E6741E07FB7D00604427 /* PartidosTableViewController.swift */,
 				778AA3191E0713D900BD84E3 /* JugadoresTableViewController.swift */,
+				07C4E6781E080CB600604427 /* PartidosTableViewCell.swift */,
 				77E1384D1E055B75006A5664 /* Main.storyboard */,
 				77E138501E055B75006A5664 /* Assets.xcassets */,
 				77E138521E055B75006A5664 /* LaunchScreen.storyboard */,
 				77E138551E055B75006A5664 /* Info.plist */,
+				07C4E6761E08017F00604427 /* PruebaTableViewController.swift */,
 			);
 			path = Practica6;
 			sourceTree = "<group>";
@@ -156,9 +162,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				07C4E6731E07F67000604427 /* ClasificacionTableViewController.swift in Sources */,
-				77E1384C1E055B75006A5664 /* SecondViewController.swift in Sources */,
 				77E138481E055B75006A5664 /* AppDelegate.swift in Sources */,
+				07C4E6771E08017F00604427 /* PruebaTableViewController.swift in Sources */,
 				779C34691E074B9700B17118 /* FirstTableViewController.swift in Sources */,
+				07C4E6751E07FB7D00604427 /* PartidosTableViewController.swift in Sources */,
+				07C4E6791E080CB600604427 /* PartidosTableViewCell.swift in Sources */,
 				779C346B1E07538600B17118 /* FirstCustomTableViewCell.swift in Sources */,
 				778AA31A1E0713D900BD84E3 /* JugadoresTableViewController.swift in Sources */,
 				77E1385C1E055D5C006A5664 /* ThirdViewController.swift in Sources */,
