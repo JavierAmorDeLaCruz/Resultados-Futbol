@@ -81,20 +81,17 @@ class PartidosTableViewController: UITableViewController {
         
         let queue = DispatchQueue(label: "img")
         queue.async {
-            var imagenStr = partido["local_shield"] as! String
-            var imagenURL = URL(string: imagenStr)
-            var dataImg = try? Data(contentsOf: imagenURL!)
+            let imagenStrLocal = partido["local_shield"] as! String
+            let imagenURLLocal = URL(string: imagenStrLocal)
+            let dataImgLocal = try? Data(contentsOf: imagenURLLocal!)
+            
+            let imagenStrVisitante = partido["visitor_shield"] as! String
+            let imagenURLVisitante = URL(string: imagenStrVisitante)
+            let dataImgVisitante = try? Data(contentsOf: imagenURLVisitante!)
             
             DispatchQueue.main.async {
-                cell.localImg?.image = UIImage(data: dataImg!)
-            }
-            
-            imagenStr = partido["visitor_shield"] as! String
-            imagenURL = URL(string: imagenStr)
-            dataImg = try? Data(contentsOf: imagenURL!)
-            
-            DispatchQueue.main.async {
-                cell.visitorImg?.image = UIImage(data: dataImg!)
+                cell.localImg?.image = UIImage(data: dataImgLocal!)
+                cell.visitorImg?.image = UIImage(data: dataImgVisitante!)
             }
         }
         
