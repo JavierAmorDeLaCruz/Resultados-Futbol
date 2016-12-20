@@ -55,7 +55,7 @@ class FirstTableViewController: UITableViewController {
                     let alert = UIAlertController(title: "Ups...", message: "En este momento no hay partidos en juego", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title:"OK",
                                                   style: .default){
-                                                    aa in self.get_liveMatches()
+                                                    aa in self.refresh()
                     })
                     self.present(alert, animated: true, completion: nil)
 
@@ -64,6 +64,14 @@ class FirstTableViewController: UITableViewController {
                 DispatchQueue.main.async {
                     print("Error descargando = \(err.localizedDescription)")
                     self.title = "Desactualizado"
+                    let alert = UIAlertController(title: "Lo sentimos", message: "No se ha podido conectar con el servidor, comprueba tu conexión.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title:"Reintentar",
+                                                  style: .default){
+                                                    aa in self.get_liveMatches()
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                    
+
                 }
             }
             DispatchQueue.main.async {

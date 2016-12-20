@@ -54,6 +54,14 @@ class FourthTableViewController: UITableViewController {
                     DispatchQueue.main.async {
                             print("Error descargando = \(err.localizedDescription)")
                             self.title = "Desactualizado"
+                        let alert = UIAlertController(title: "Lo sentimos", message: "No se ha podido conectar con el servidor, comprueba tu conexión.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title:"Reintentar",
+                                                      style: .default){
+                                                        aa in self.get_equipos()
+                        })
+                        self.present(alert, animated: true, completion: nil)
+                        
+
                     }
                 }
                 DispatchQueue.main.async {

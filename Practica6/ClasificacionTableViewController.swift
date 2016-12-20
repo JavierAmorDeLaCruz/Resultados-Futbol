@@ -59,6 +59,14 @@ class ClasificacionTableViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.title = "Desactualizado"
                     print("Error descargando = \(err.localizedDescription)")
+                    let alert = UIAlertController(title: "Lo sentimos", message: "No se ha podido conectar con el servidor, comprueba tu conexión.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title:"Reintentar",
+                                                  style: .default){
+                                                    aa in self.getClasificacion()
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                    
+
                 }
             }
         }
