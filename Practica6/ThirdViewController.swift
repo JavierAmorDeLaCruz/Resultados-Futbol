@@ -72,7 +72,9 @@ class ThirdViewController: UITableViewController {
             let imagenURL = URL(string: imagenStr)
             let dataImg = try? Data(contentsOf: imagenURL!)
             
+            DispatchQueue.main.async {
             cell.imageView?.image = UIImage(data: dataImg!)
+            }
         }
         
         cell.textLabel?.text = nombre

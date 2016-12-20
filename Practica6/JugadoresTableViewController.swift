@@ -100,11 +100,24 @@ class JugadoresTableViewController: UITableViewController {
         // Mostrar indicador de actividad de red
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         // URL de la imagen
-        let imgUrl = dic["image"] as! String
+        /*let imgUrl = dic["image"] as! String
         let url = URL(string: imgUrl)!
         let dataImg = try? Data(contentsOf: url)
         cell.imageView?.image = UIImage(data: dataImg!)
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false*/
+        
+        cell.imageView?.image = #imageLiteral(resourceName: "man")
+        
+        let queue = DispatchQueue(label: "img")
+        queue.async {
+            let imgUrl = dic["image"] as! String
+            let url = URL(string: imgUrl)!
+            let dataImg = try? Data(contentsOf: url)
+            DispatchQueue.main.async {
+                cell.imageView?.image = UIImage(data: dataImg!)
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+        }
         /*let task = session.dataTask(with: url) { (data: Data?,
             response: URLResponse?,
             error: Error? ) in
