@@ -24,6 +24,11 @@ class FirstTableViewController: UITableViewController {
     refreshControl?.endRefreshing()
     }
     
+    func no_liveMatches(){
+    self.navigationItem.title = "No Hay Partidos en Directo"
+    return
+    }
+    
     func get_liveMatches(){
         let Equipos_URL = "http://apiclient.resultados-futbol.com/scripts/api/api.php?key=8f696b3cbaf3af38cd3ab6fa2bc7f3a1&tz=Europe/Madrid&format=json&req=livescore"
         
@@ -52,10 +57,10 @@ class FirstTableViewController: UITableViewController {
                     self.navigationItem.title = "Partidos en Directo"
                 }
                 }else {
-                    let alert = UIAlertController(title: "Ups...", message: "En este momento no hay partidos en juego", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "Ups...", message: "En este momento no hay partidos en juego, deslice hacia abajo para refrescar", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title:"OK",
                                                   style: .default){
-                                                    aa in self.refresh()
+                                                    aa in self.no_liveMatches()
                     })
                     self.present(alert, animated: true, completion: nil)
 
